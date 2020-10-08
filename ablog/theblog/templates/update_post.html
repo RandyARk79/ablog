@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% extends 'base.html' %}
+{% block title %} {{post.title_tag}} {% endblock %}
+{% block content %}
+
+{% if user.is_authenticated%}
+<h1>Update Post</h1>
+
+<div class="form-group">
+    <form method="post">
+        {% csrf_token%}
+        {{ form.as_p}}
+        <button class="btn btn-secondary">Post</button>
+    </form>
+</div>
+
+{% else %}
+<h3>Please login to access this feature </h3>
+
+{% endif %}
+
+{% endblock %}
+</body>
+</html>

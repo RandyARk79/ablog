@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Category...</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated%}
+
+<h1>Add Post</h1>
+
+<div class="form-group">
+
+    <form method="post">
+        {% csrf_token%}
+        {{ form.as_p}}
+        <button class="btn btn-secondary">Add Category</button>
+    </form>
+</div>
+
+{% else %}
+
+<h3>Please Login to add Post</h3>
+
+{% endif %}
+
+{% endblock %}
+</body>
+</html>
