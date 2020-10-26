@@ -12,13 +12,14 @@
 {% extends 'base.html' %}
 
 {% block content%}
+{% if category_post%}
 
-<h1>{{cats}} Category</h1>
+<h1 style="text-transform: uppercase;">{{cats}} Category</h1>
 
 
 <ul>
 
-{{% for post in category_post %}}
+{% for post in category_post %}
 
 <li><a href="{% url 'article-detail' post.pk %}">{{ post.title}}</a> | by -{{ post.author.first_name}} {{post.author.last_name}}
 
@@ -37,9 +38,13 @@
     </li>
 
 
-{{% endfor %}}
+{% endfor %}
 </ul>
+{%else%}
+    <h2>The {{cats}} Does not exits</h2>
+    <p>You can add a category at <a href="{% url 'add_category' %}">Here</a></p>
 
+{% endif%}
 {% endblock %}
 
 
