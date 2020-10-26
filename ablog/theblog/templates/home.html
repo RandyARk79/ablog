@@ -24,7 +24,7 @@
         {% endif %}
 
         <br>
-        <small>Category: <strong>{{ post.category }}</strong> </small>
+        <small>Category: <a href="{% url 'category' post.category%}">{{ post.category }}</a> </small>
         <br/>
 
         {{post.body|slice:":100"|safe}}... <br>
