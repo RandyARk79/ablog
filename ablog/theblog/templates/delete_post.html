@@ -9,27 +9,32 @@
 <body>
 
 {% extends 'base.html' %}
-  {% block title %} Deleting {{post.title_tag}} {% endblock %}
+{% block title %} Deleting {{ post.title_tag }} {% endblock %}
 {% block content %}
-{% if user.is_authenticated%}
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
 
-<h3>Deleting: {{post.title}} </h3>
-<br>
-<div class="form-group">
-<form method="post">
-    {% csrf_token %}
-    <strong>Are you sure?!<br> To delete {{post.title}}</strong>
-    <br><br>
-    <button class="btn btn-danger">Delete Post</button>
-    </form>
-</div>
+            <h3>Deleting: {{ post.title }} </h3>
+            <br>
+            <div class="form-group">
+                <form method="post">
+                    {% csrf_token %}
+                    <strong>Are you sure?!<br> To delete {{ post.title }}</strong>
+                    <br><br>
+                    <button class="btn btn-danger">Delete Post</button>
+                </form>
+            </div>
+        {% else %}
+            <h3>Your are not authorise to access this. Please contact support team for Help</h3>
+        {% endif %}
+    {% else %}
+        <h3>Please login to access this feature </h3>
 
-{% else %}
-<h3>Please login to access this feature </h3>
 
-{% endif %}
 
-    {% endblock %}
+    {% endif %}
+
+{% endblock %}
 
 </body>
 </html>

@@ -5,24 +5,29 @@
 </head>
 <body>
 {% extends 'base.html' %}
-{% block title %} {{post.title_tag}} {% endblock %}
+{% block title %} {{ post.title_tag }} {% endblock %}
 {% block content %}
 
-{% if user.is_authenticated%}
-<h1>Update Post</h1>
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
 
-<div class="form-group">
-    <form method="post">
-        {% csrf_token%}
-        {{ form.as_p}}
-        <button class="btn btn-secondary">Post</button>
-    </form>
-</div>
+            <h1>Update Post</h1>
 
-{% else %}
-<h3>Please login to access this feature </h3>
+            <div class="form-group">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Post</button>
+                </form>
+            </div>
+        {% else %}
+            <h3>Your are not authorise to access this. Please contact support team for Help</h3>
 
-{% endif %}
+        {% endif %}
+    {% else %}
+        <h3>PYour are not authorise to access this. Please contact support team for Any Help </h3>
+
+    {% endif %}
 
 {% endblock %}
 </body>
