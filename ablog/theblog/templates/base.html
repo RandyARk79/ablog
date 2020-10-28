@@ -13,7 +13,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
-    <a class="navbar-brand" href="{% url 'home'%}">My Awesome Blog!</a>
+    <a class="navbar-brand" href="{% url 'home' %}">My Awesome Blog!</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,49 +25,54 @@
 
             <!-- Category menu items -->
             {% if cat_menu %}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Category's
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <!--For-loop for category items-->
-                    {% for item in cat_menu %}
-                    <a class="dropdown-item" href="{% url 'category' item|slugify%}">{{item}}</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category's
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!--For-loop for category items-->
+                        {% for item in cat_menu %}
+                            <a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a>
 
-                    {% endfor %}
-
-                </div>
-            </li>
-            {% endif %}
-
-            {% if user.is_authenticated%}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
-            </li>
-            <li class="nav-item">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
-            </li>
-            <li class="nav-item">
-
-
-                <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
-            </li>
-
+                        {% endfor %}
+                        <!-- end of Category menu items -->
             {% else %}
 
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}">Sing-UP</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">LogIn</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'category-list' %}">Category List</a>
+                </li>
 
             {% endif %}
 
 
-        </ul>
+    {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
+        </li>
+        <li class="nav-item">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+        </li>
+        <li class="nav-item">
+
+
+            <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
+        </li>
+
+    {% else %}
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Sing-UP</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+        </li>
+
+    {% endif %}
+
+
+    </ul>
 
     </div>
 </nav>
