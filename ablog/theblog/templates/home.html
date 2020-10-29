@@ -28,6 +28,9 @@
 
                 <br>
                 <small>Category: <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a> </small>
+                {% if total_likes%}
+                    <small>|{{ total_likes }} likes</small>
+                {% endif %}
                 <br/>
 
                 {{ post.body|slice:":40"|safe }}... <br>
