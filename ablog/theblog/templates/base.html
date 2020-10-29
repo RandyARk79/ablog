@@ -25,53 +25,52 @@
 
             <!-- Category menu items -->
             {% if cat_menu %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Category's
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!--For-loop for category items-->
-                        {% for item in cat_menu %}
-                            <a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Category's
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <!--For-loop for category items-->
+                    {% for item in cat_menu %}
+                    <a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a>
 
-                        {% endfor %}
-                        <!-- end of Category menu items -->
-                        {% else %}
+                    {% endfor %}
+                    <!-- end of Category menu items -->
+                    {% else %}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'category-list' %}">Category List</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'category-list' %}">Category List</a>
+            </li>
 
             {% endif %}
 
 
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
-                </li>
-                <li class="nav-item">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
+            </li>
+            <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
+            </li>
 
-                <li class="nav-item mr-left">
-                    <a class="nav-link" href="#">{{ user }}</a>
-                </li>
+            <li class="nav-item mr-left">
+                <a class="nav-link" href="#">{{ user }}</a>
+            </li>
 
             {% else %}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Sing-UP</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">LogIn</a>
-                </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Sing-UP</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+            </li>
 
 
             {% endif %}
@@ -94,12 +93,13 @@
 <footer class="page-footer font-small dark blockquote-footer">
 
 
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="{% url 'home' %}">My Awesome Blog!</a>
+    <div class="footer-copyright text-center py-3">
+        <div>© 2020 Copyright:
+            <a href="{% url 'home' %}">My Awesome Blog!</a></div>
+        <div class="text-center py-3">Contact us: <a href="#">support@myawedomeblog.com</a></div>
     </div>
-    <div class="text-center py-3">Contact us: <a href="#">support@myawedomeblog</a></div>
-    <hr>
-    <br>
+<hr>
+
 </footer>
 
 

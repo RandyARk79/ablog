@@ -30,7 +30,7 @@
                 <small>Category: <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a> </small>
                 <br/>
 
-                {{ post.body|slice:":100"|safe }}... <br>
+                {{ post.body|slice:":40"|safe }}... <br>
                 <hr>
             </li>
         {% endfor %}

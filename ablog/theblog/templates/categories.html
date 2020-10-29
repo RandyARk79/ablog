@@ -16,13 +16,14 @@
 
 <h1 style="text-transform: title;">{{cats}} Category</h1>
 
-    <br>
-    <br>
+<br>
+<br>
 <ul>
 
-{% for post in category_post %}
+    {% for post in category_post %}
 
-<li><a href="{% url 'article-detail' post.pk %}">{{ post.title}}</a> | by -{{ post.author.first_name}} {{post.author.last_name}}
+    <li><a href="{% url 'article-detail' post.pk %}">{{ post.title}}</a> | by -{{ post.author.first_name}}
+        {{post.author.last_name}}
 
 
         {% if user.is_authenticated%}
@@ -33,17 +34,20 @@
         <br>
         <small>Category: <strong>{{ post.category }}</strong> </small>
         <br/>
+        <br>
 
         {{post.body|slice:":100"|safe}}... <br>
         <hr>
     </li>
 
-
-{% endfor %}
+    {% endfor %}
 </ul>
+<br>
+<br>
+
 {%else%}
-    <h2>The {{cats}} Does not exits</h2>
-    <p>You can add a category at <a href="{% url 'add_category' %}">Here</a></p>
+<h2>There is no post in title {{cats}}</h2>
+<p>You can add a post at <a href="{% url 'add_post' %}">Add Post</a></p>
 
 {% endif%}
 {% endblock %}
