@@ -18,7 +18,7 @@
         <h1>{{ post.title }}-{{ post.author.id }}</h1>
 
         {% if post.author.first_name != null %}
-            <small> By: {{ post.author.first_name }} {{ post.author.first_name }} on {{ post.post_date }}
+            <small> By: <strong>{{ post.author.first_name }} {{ post.author.last_name }}</strong> on {{ post.post_date }}
                 | {{ post.post_time }}</small><br>
         {% else %}
             <small>By: {{ post.author.username }}</small>
@@ -51,7 +51,8 @@
             </a>
 
             <hr>
-            <br>
+
+            <div>
             <form action="{% url 'like_post' post.pk %}">
                 {% csrf_token %}
                 {% if liked %}
@@ -63,17 +64,17 @@
                 {% endif %}
 
             </form>
+            </div>
         {% else %}
-            <p>Please login to like this post <a class="nav-link" href="{% url 'login' %}">LogIn</a></p>
+            <div>Please login to like this post
+                <a class="nav-link" href="{% url 'login' %}">LogIn</a></div>
         {% endif %}
-
-        <p>- {{ total_likes }} likes</p>
+        <div>- {{ total_likes }} likes</div>
         <hr>
-        <br>
         <h2>Comments...</h2><br>
 
         {% if not post.comments.all %}
-            No Comments yet... You can add comment <a href="#">Here</a>
+            No Comments yet... You can add comments <a href="#">Here</a>
         {% else %}
             {% for comment in post.comments.all %}
                 <p>
