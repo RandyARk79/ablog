@@ -32,6 +32,8 @@
         <hr>
 
 
+
+
         {% if user.is_authenticated %}
             {% if user.id == post.author.id %}
 
@@ -42,9 +44,12 @@
                     <button type="button" class="btn btn-danger">Delete</button>
                 </a>
             {% endif %}
+
+            <!--    Button to go home-->
             <a href="{% url 'home' %}">
                 <button type="button" class="btn btn-secondary">Home</button>
             </a>
+
             <hr>
             <br>
             <form action="{% url 'like_post' post.pk %}">
@@ -61,7 +66,25 @@
         {% else %}
             <p>Please login to like this post <a class="nav-link" href="{% url 'login' %}">LogIn</a></p>
         {% endif %}
-        - {{ total_likes }} likes
+
+        <p>- {{ total_likes }} likes</p>
+        <hr>
+        <br>
+        <h2>Comments...</h2><br>
+
+        {% if not post.comments.all %}
+            No Comments yet... You can add comment <a href="#">Here</a>
+        {% else %}
+            {% for comment in post.comments.all %}
+                <p>
+                    <small><strong>{{ comment.name }} </strong>|
+                        <small>{{ comment.date_added }}</small>
+                    </small><br>
+                    # {{ comment.body }}<br>
+                </p>
+            {% endfor %}
+            <hr>
+        {% endif %}
     {% endblock %}
 
 </div>
